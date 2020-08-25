@@ -5,7 +5,7 @@
     padding-left: 10px;
     padding-right: 10px;
     width: 450px;
-    height: 100%;
+    height: 100vh;
     flex-direction: column;
     background-color: $dark-grey;
   }
@@ -36,5 +36,45 @@
     &:hover {
       color: darken($color: #fff, $amount: 20);
     }
+  }
+  &__entries {
+    margin-top: 30px;
+    flex: 1 1 auto;
+    overflow-y: scroll;
+  }
+
+  &__entry {
+    background-color: #fff;
+    border-radius: 4px;
+    color: $dark-grey;
+    display: flex;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  &__entry-picture {
+    height: 75px;
+    width: 75px;
+  }
+
+  &__entry-body {
+    padding: 10px;
+  }
+  &__entry-title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  &__entry-content {
+    font-size: 10px;
+  }
+  &__entry-date-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+  }
+
+  &__entry-date-box span {
+    font-size: 12px;
   }
 }

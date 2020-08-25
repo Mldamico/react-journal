@@ -1,0 +1,40 @@
+.journal {
+  &__sidebar {
+    display: flex;
+    color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 450px;
+    height: 100%;
+    flex-direction: column;
+    background-color: $dark-grey;
+  }
+
+  &__main-content {
+    display: flex;
+  }
+
+  &__sidebar-navbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__sidebar-navbar h3 {
+    font-weight: lighter;
+  }
+
+  &__new-entry {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+    flex-direction: column;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: darken($color: #fff, $amount: 20);
+    }
+  }
+}

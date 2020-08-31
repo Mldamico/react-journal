@@ -11,7 +11,7 @@ export const LoginScreen = () => {
     email: 'matias@gmail.com',
     password: '123456',
   });
-  const { msgError } = useSelector((state) => state.ui);
+  const { msgError, loading } = useSelector((state) => state.ui);
 
   const dispatch = useDispatch();
 
@@ -63,7 +63,11 @@ export const LoginScreen = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <button type='submit' className='btn btn-primary btn-block'>
+        <button
+          type='submit'
+          className='btn btn-primary btn-block'
+          disabled={loading}
+        >
           Login
         </button>
         <div className='auth__social-networks'>

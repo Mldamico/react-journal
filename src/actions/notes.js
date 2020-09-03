@@ -2,6 +2,8 @@ import Swal from 'sweetalert2';
 import { types } from '../types/types';
 import { firebase, googleAuthProvider, db } from '../firebase/firebase-config';
 import { finishLoading, startLoading } from './ui';
+import { loadNotes } from '../helpers/loadNotes';
+import { setNotes } from '../actions/notes';
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
@@ -23,6 +25,14 @@ export const activeNote = (id, note) => ({
     ...note,
   },
 });
+
+export const startLoadingNotes = (uid) => {
+  return async (dispatch) => {
+    const notes = await loadNotes(uid);
+
+    dispatch(setNotes(notes));
+  };
+};
 
 export const setNotes = (notes) => ({
   type: types.notesLoad,

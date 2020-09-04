@@ -45,8 +45,24 @@ export const startSaveNote = (note) => {
     }
     const noteToFirestore = { ...note };
     delete noteToFirestore.id;
-    const docu = await db
-      .doc(`${uid}/journal/notes/${note.id}`)
-      .update(noteToFirestore);
+    try {
+      await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+
+      dispatch(refreshNote(note.id, noteToFirestore));
+      Swal.fire('Saved', note.title, 'success');
+    } catch (err) {
+      Swal.fire('Error', err, 'error');
+    }
   };
 };
+
+export const refreshNote = (id, note) => ({
+  type: types.notesUpdated,
+  payload: {
+    id,
+    note: {
+      id,
+      ...note,
+    },
+  },
+});

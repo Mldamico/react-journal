@@ -72,3 +72,11 @@
     background: $button-active-blue;
   }
 }
+
+.btn-danger {
+  background-color: #ff0000;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: darken($color: #ff0000, $amount: 10);
+  }
+}

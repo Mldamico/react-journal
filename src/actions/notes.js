@@ -3,6 +3,7 @@ import { types } from '../types/types';
 import { firebase, googleAuthProvider, db } from '../firebase/firebase-config';
 import { finishLoading, startLoading } from './ui';
 import { loadNotes } from '../helpers/loadNotes';
+import { fileUpload } from '../helpers/fileUpload';
 export const startNewNote = () => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid;
@@ -66,3 +67,11 @@ export const refreshNote = (id, note) => ({
     },
   },
 });
+
+export const startUploading = (file) => {
+  return async (dispatch, getState) => {
+    const { active: activeNote } = getState().notes;
+    const fileUrl = await fileUpload(file);
+    console.log(fileUrl);
+  };
+};

@@ -1,6 +1,10 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { startLoadingNotes, startNewNote } from '../../actions/notes';
+import {
+  startLoadingNotes,
+  startNewNote,
+  startSaveNote,
+} from '../../actions/notes';
 import { db } from '../../firebase/firebase-config';
 import { types } from '../../types/types';
 const middleswares = [thunk];
@@ -57,5 +61,14 @@ describe('Test at notes actions', () => {
       date: expect.any(Number),
     };
     expect(actions[0].payload[0]).toMatchObject(expected);
+  });
+
+  test('should upload the note', async () => {
+    const note = { id: '81pRTogqCQBV6AK8WKIw', title: 'title', body: 'body' };
+    await store.dispatch(startSaveNote(note));
+    const actions = store.getActions();
+    expect(actions[0].type).toBe(types.notesUpdated);
+    const docRef = await db.doc(`/123456/journal/notes/${note.id}`).get();
+    expect(docRef.data().title).toBe(note.title);
   });
 });
